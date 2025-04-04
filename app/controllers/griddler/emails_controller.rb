@@ -17,6 +17,10 @@ class Griddler::EmailsController < ActionController::Base
   private :processor_class, :email_class, :processor_method, :email_service
 
   def normalized_params
+    params['text'] = params['text'].gsub('\xE2\x80\x93','-')
+    Rails.logger.info "********* NEW TEXT ***********"
+    Rails.logger.info params.inspect 
+    Rails.logger.info "********* END TEXT ***********"
     Array.wrap(email_service.normalize_params(params))
   end
 
