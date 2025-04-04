@@ -28,7 +28,7 @@ module Griddler::EmailParser
     if body.blank?
       ""
     else
-      remove_reply_portion(body.gsub('\xE2\x80\x93', ''))
+      remove_reply_portion(body.gsub('–', '-'))
         .split(/[\r]*\n/)
         .reject do |line|
           line =~ /^[[:space:]]+>/ ||
